@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- This network was created in GeNIe Academic, which can be used for educational and research purposes only -->
+<smile version="1.0" id="Network1" numsamples="10000" discsamples="10000">
+	<nodes>
+		<cpt id="ModConLog" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<cpt id="WrongReact" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<cpt id="ICSServ" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<cpt id="ICSMasq" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<cpt id="SpoofComMes" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<cpt id="MITM" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<cpt id="ModComMes" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<cpt id="SpoofRepMes" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<cpt id="ModRepMes" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<cpt id="CorrReact" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>1 0</probabilities>
+		</cpt>
+		<deterministic id="NotCoherStatus" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>ModRepMes SpoofRepMes</parents>
+			<resultingstates>State0 State1 State1 State1</resultingstates>
+		</deterministic>
+		<deterministic id="NewICS" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>ICSMasq ICSServ</parents>
+			<resultingstates>State0 State0 State0 State1</resultingstates>
+		</deterministic>
+		<deterministic id="ICSCompr" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>WrongReact SpoofComMes ModComMes CorrReact</parents>
+			<resultingstates>State0 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1</resultingstates>
+		</deterministic>
+		<cpt id="Periodic" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>SpoofRepMes</parents>
+			<probabilities>0.9999 9.999999999998899e-05 9.999999999998899e-05 0.9999</probabilities>
+		</cpt>
+		<cpt id="SuspArgICS" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>ICSMasq</parents>
+			<probabilities>0.9999 0.0001 0.0001 0.9999</probabilities>
+		</cpt>
+		<noisymax id="QuickExecSuspCom" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>NewICS MITM</parents>
+			<strengths>0 1 0 1</strengths>
+			<parameters>0 1 0 1 0 1 0 1 0.5 0.5</parameters>
+		</noisymax>
+		<noisymax id="CoherentDev" dynamic="plate">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>ModComMes SpoofRepMes ModRepMes SpoofComMes</parents>
+			<strengths>0 1 0 1 0 1 0 1</strengths>
+			<parameters>0.5 0.5 0 1 0.5 0.5 0 1 0.5 0.5 0 1 0.5 0.5 0 1 0.5 0.5</parameters>
+		</noisymax>
+	</nodes>
+	<dynamic numslices="11">
+		<cpt id="ModConLog" order="1">
+			<parents>ModConLog</parents>
+			<probabilities>0.86871 0.13129 0 1</probabilities>
+		</cpt>
+		<cpt id="WrongReact" order="1">
+			<parents>WrongReact ModConLog</parents>
+			<probabilities>1 0 0.5 0.5 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="ICSServ" order="1">
+			<parents>ICSServ</parents>
+			<probabilities>0.95165 0.04835 0 1</probabilities>
+		</cpt>
+		<cpt id="ICSMasq" order="1">
+			<parents>ICSMasq</parents>
+			<probabilities>0.94351 0.05649000000000004 0 1</probabilities>
+		</cpt>
+		<cpt id="SpoofComMes" order="1">
+			<parents>SpoofComMes NewICS</parents>
+			<probabilities>1 0 0.83316 0.16684 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="MITM" order="1">
+			<parents>MITM</parents>
+			<probabilities>0.85993 0.14007 0 1</probabilities>
+		</cpt>
+		<cpt id="ModComMes" order="1">
+			<parents>ModComMes MITM</parents>
+			<probabilities>1 0 0.85763 0.14237 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="SpoofRepMes" order="1">
+			<parents>SpoofRepMes MITM</parents>
+			<probabilities>1 0 0.82844 0.17156 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="ModRepMes" order="1">
+			<parents>ModRepMes MITM</parents>
+			<probabilities>1 0 0.85695 0.14305 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="CorrReact" order="1">
+			<parents>CorrReact NotCoherStatus</parents>
+			<probabilities>1 0 0.5 0.5 0 1 0 1</probabilities>
+		</cpt>
+	</dynamic>
+	<cases>
+		<case name="prova1" category="prova">
+			<description>descrizione</description>
+			<evidence node="Periodic" slice="5" state="State0" />
+			<evidence node="Periodic" slice="6" state="State1" />
+			<evidence node="SuspArgICS" slice="6" state="State1" />
+			<evidence node="CoherentDev" slice="7" state="State1" />
+		</case>
+	</cases>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.1.621.1 ACADEMIC" name="Network1" faultnameformat="nodestate">
+			<plate leftwidth="100" rightwidth="100">20 30 1002 539</plate>
+			<node id="ModConLog">
+				<name>ModConLog</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>245 53 314 96</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="WrongReact">
+				<name>WrongReact</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>693 109 762 152</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="ICSServ">
+				<name>ICSServ</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>389 335 443 368</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="ICSMasq">
+				<name>ICSMasq</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>410 203 474 252</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="SpoofComMes">
+				<name>SpoofComMes</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>531 359 613 410</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="MITM">
+				<name>MITM</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>183 125 267 190</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="ModComMes">
+				<name>ModComMes</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>554 146 627 191</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="SpoofRepMes">
+				<name>SpoofRepMes</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>284 252 362 304</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="ModRepMes">
+				<name>ModRepMes</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>146 290 241 330</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="CorrReact">
+				<name>CorrReact</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>384 450 468 501</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="NotCoherStatus">
+				<name>NotCoherStatus(Or)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>218 430 313 492</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="NewICS">
+				<name>NewICS(And)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>508 238 589 292</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="ICSCompr">
+				<name>ICSCompr(Or)</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>686 431 782 491</position>
+				<barchart width="128" height="78" />
+			</node>
+			<node id="Periodic">
+				<name>Periodic</name>
+				<interior color="ffff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>338 391 392 424</position>
+			</node>
+			<node id="SuspArgICS">
+				<name>SuspArgICS</name>
+				<interior color="ffff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>307 192 378 236</position>
+			</node>
+			<node id="QuickExecSuspCom">
+				<name>QuickExecSuspCom</name>
+				<interior color="ffff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>353 100 445 158</position>
+			</node>
+			<node id="CoherentDev">
+				<name>CoherentDev</name>
+				<interior color="ffff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>791 313 866 359</position>
+			</node>
+		</genie>
+	</extensions>
+</smile>

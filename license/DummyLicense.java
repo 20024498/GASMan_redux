@@ -1,0 +1,1 @@
+//Use your LICENSE.JAVA instead of this dummy class
